@@ -1,0 +1,24 @@
+@use "../global/index.scss" as *;
+
+body {
+  font-feature-settings: "palt";
+  -webkit-font-smoothing: antialiased;
+}
+
+.pc-only {
+  @include media(sp) {
+    display: none !important;
+  }
+  @include media(pc) {
+    display: block;
+  }
+}
+
+.sp-only {
+  @include media(sp) {
+    display: block;
+  }
+  @include media(pc) {
+    display: none !important;
+  }
+}
