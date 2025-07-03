@@ -1,0 +1,75 @@
+---
+
+---
+
+<header class="l-header">
+  <a href="" class="l-header__link">
+    <h1 class="l-header__logo">astro-wp-integration</h1>
+  </a>
+  <nav class="l-header__nav">
+    <ul class="l-header__list">
+      <li class="l-header__item">
+        <a href="" class="l-header__link">About</a>
+      </li>
+      <li class="l-header__item">
+        <a href="" class="l-header__link">Works</a>
+      </li>
+      <li class="l-header__item">
+        <a href="" class="l-header__link">Contact</a>
+      </li>
+    </ul>
+  </nav>
+</header>
+
+<style lang="scss">
+  .l-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+
+    @include media(sp) {
+      height: sp(60);
+      padding: 0 sp(16);
+    }
+    @include media(pc) {
+      height: pc(80);
+      padding: 0 pc(40);
+    }
+    > .l-header__link {
+      color: #000;
+      @include media(sp) {
+        font-size: sp(16);
+      }
+      @include media(pc) {
+        font-size: pc(32);
+      }
+    }
+    > .l-header__nav {
+      > .l-header__list {
+        display: flex;
+
+        @include media(sp) {
+          column-gap: sp(8);
+        }
+        @include media(pc) {
+          column-gap: pc(40);
+        }
+        > .l-header__item {
+          > .l-header__link {
+            color: #000;
+            @include media(sp) {
+              font-size: sp(12);
+            }
+            @include media(pc) {
+              font-size: pc(24);
+            }
+          }
+        }
+      }
+    }
+  }
+</style>

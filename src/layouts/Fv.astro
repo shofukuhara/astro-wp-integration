@@ -1,0 +1,31 @@
+---
+import AssetsImage from "../components/common/AssetsImage.astro";
+import AssetsPicture from "../components/common/AssetsPicture.astro";
+---
+
+<div class="l-fv">
+  <AssetsPicture
+    srcPaths={["img_01.jpg", "img_01.jpg"]}
+    format="webp"
+    quality={85}
+    loading="eager"
+  />
+</div>
+
+<style lang="scss" is:global>
+  .l-fv {
+    width: 100%;
+    height: 100vh;
+    picture {
+      width: 100%;
+      height: 100%;
+      display: block;
+      > .i {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+      }
+    }
+  }
+</style>

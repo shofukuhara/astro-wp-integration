@@ -1,5 +1,7 @@
 ---
 import Base from "../layouts/Base.astro";
+import Header from "../layouts/Header.astro";
+import Fv from "../layouts/Fv.astro";
 import AssetsImage from "../components/common/AssetsImage.astro";
 import AssetsPicture from "../components/common/AssetsPicture.astro";
 import Button from "../components/ui/Button.astro";
@@ -8,35 +10,106 @@ import Picture from "../components/common/Picture.astro";
 
 <Base pageMeta="home" pageData="home">
   <!-- body内の要素 -->
-  <Button href="/about" className="c-button--primary" text="Aboutページへ" />
-  <AssetsImage
-    srcPaths={["../assets/images/common/pc.jpg"]}
-    format="webp"
-    quality={85}
-    loading="eager"
-    alt=""
-  />
-  <AssetsPicture
-    srcPaths={["pc.jpg", "sp.jpg"]}
-    format="webp"
-    quality={85}
-    loading="eager"
-  />
-  <AssetsPicture
-    srcPaths={["pc.jpg", "sp.jpg"]}
-    format="webp"
-    quality={85}
-    loading="eager"
-    pictureAttributes={{ "data-item": "pictrue" }}
-    imgAttributes={{ "data-item": "img" }}
-  />
-  <Picture
-    srcPc="common/item_pc"
-    srcSp="common/item_sp"
-    alt="説明テキスト"
-    loading="lazy"
-    classNames="custom-class item"
-    pictureAttributes={{ "data-picture": "" }}
-    imgAttributes={{ "data-img": "" }}
-  />
+  <Header />
+  <Fv />
+  <section class="works">
+    <div class="works__area">
+      <h2 class="works__title">Works</h2>
+      <ul class="works__list">
+        <li class="works__item">
+          <a href="" class="works__link">
+            <AssetsPicture
+              srcPaths={["img_01.jpg", "img_01.jpg"]}
+              format="webp"
+              quality={85}
+              loading="eager"
+            />
+          </a>
+        </li>
+        <li class="works__item">
+          <a href="" class="works__link">
+            <AssetsPicture
+              srcPaths={["img_02.jpg", "img_02.jpg"]}
+              format="webp"
+              quality={85}
+              loading="eager"
+            />
+          </a>
+        </li>
+        <li class="works__item">
+          <a href="" class="works__link">
+            <AssetsPicture
+              srcPaths={["img_03.jpg", "img_03.jpg"]}
+              format="webp"
+              quality={85}
+              loading="eager"
+            />
+          </a>
+        </li>
+      </ul>
+    </div>
+  </section>
 </Base>
+
+<style lang="scss" is:global>
+  .works {
+    @include media(sp) {
+      padding: 0 sp(24);
+      margin-top: sp(60);
+      padding-right: sp(16);
+      margin-bottom: sp(60);
+      padding-left: sp(16);
+    }
+    @include media(pc) {
+      padding: 0 pc(40);
+      margin-top: pc(120);
+      margin-bottom: pc(120);
+    }
+    > .works__area {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: pc(40);
+      justify-content: center;
+      > .works__title {
+        text-align: center;
+        @include media(sp) {
+          font-size: sp(24);
+        }
+        @include media(pc) {
+          font-size: pc(40);
+        }
+      }
+      > .works__list {
+        display: grid;
+        @include media(sp) {
+          grid-template-rows: repeat(3, 1fr);
+          gap: sp(16);
+        }
+        @include media(pc) {
+          grid-template-columns: repeat(3, 1fr);
+          gap: pc(16);
+        }
+        > .works__item {
+          > .works__link {
+            aspect-ratio: 16 /9;
+            width: 100%;
+            height: auto;
+            display: block;
+            picture {
+              width: 100%;
+              height: 100%;
+              display: block;
+              > .i {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                object-position: center;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+</style>

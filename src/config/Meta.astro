@@ -8,6 +8,7 @@ const meta = metaData[pageMeta as keyof typeof metaData] || metaData["default"];
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>{meta.title}</title>
+<meta name="robots" content="noindex">
 <meta name="description" content={meta.description} />
 <meta name="keywords" content={meta.keywords} />
 
