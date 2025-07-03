@@ -10,7 +10,8 @@
     "dev": "astro dev",
     "build": "npm run style:lint && astro build && npm run addLicense",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "deploy": "npm run build && wrangler pages deploy dist --project-name astro-wp-integration"
   },
   "dependencies": {
     "astro": "^5.10.0",
