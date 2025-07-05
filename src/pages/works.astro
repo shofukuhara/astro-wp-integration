@@ -1,52 +1,59 @@
 ---
 import Base from "../layouts/Base.astro";
 import Header from "../layouts/Header.astro";
-import Fv from "../layouts/Fv.astro";
 import AssetsImage from "../components/common/AssetsImage.astro";
 import AssetsPicture from "../components/common/AssetsPicture.astro";
-import Button from "../components/ui/Button.astro";
-import Picture from "../components/common/Picture.astro";
 
+// 型定義
+export interface Work {
+  id: number;
+  slug: string;
+  title: {
+    rendered: string;
+  };
+  content: {
+    rendered: string;
+  };
+  _embedded?: {
+    "wp:featuredmedia"?: [{ source_url: string }];
+  };
+  acf?: {
+    article_image?: string;
+    article_title?: string;
+    article_text?: string;
+  };
+}
+const res = await fetch(`${import.meta.env.PUBLIC_API_URL}/works?_embed`);
+
+const workList: Work[] = await res.json();
 ---
 
 <Base pageMeta="home" pageData="home">
   <!-- body内の要素 -->
   <Header />
-  <Fv />
   <section class="works">
     <div class="works__area">
       <h2 class="works__title">Works</h2>
       <ul class="works__list">
-        <li class="works__item">
-          <a href="" class="works__link">
-            <AssetsPicture
-              srcPaths={["img_01.jpg", "img_01.jpg"]}
-              format="webp"
-              quality={85}
-              loading="eager"
-            />
-          </a>
-        </li>
-        <li class="works__item">
-          <a href="" class="works__link">
-            <AssetsPicture
-              srcPaths={["img_02.jpg", "img_02.jpg"]}
-              format="webp"
-              quality={85}
-              loading="eager"
-            />
-          </a>
-        </li>
-        <li class="works__item">
-          <a href="" class="works__link">
-            <AssetsPicture
-              srcPaths={["img_03.jpg", "img_03.jpg"]}
-              format="webp"
-              quality={85}
-              loading="eager"
-            />
-          </a>
-        </li>
+        {
+          workList.map((item) => (
+            <li class="works__item">
+              <a class="works__link" href={`/works/${item.slug}`}>
+                <div class="image">
+                  <img
+                    src={
+                      item._embedded?.["wp:featuredmedia"]?.[0]?.source_url ??
+                      ""
+                    }
+                    alt=""
+                    class="i"
+                  />
+                </div>
+                <p class="works__title">{item.title.rendered}</p>
+              </a>
+            </li>
+          ))
+        }
       </ul>
     </div>
   </section>
@@ -95,8 +102,15 @@ import Picture from "../components/common/Picture.astro";
             aspect-ratio: 16 /9;
             width: 100%;
             height: auto;
-            display: block;
-            picture {
+            display: flex;
+            flex-direction: column;
+            @include media(sp) {
+              gap: sp(8);
+            }
+            @include media(pc) {
+              gap: pc(8);
+            }
+            > .image {
               width: 100%;
               height: 100%;
               display: block;
@@ -105,6 +119,15 @@ import Picture from "../components/common/Picture.astro";
                 height: 100%;
                 object-fit: cover;
                 object-position: center;
+              }
+            }
+            > .works__title {
+              color: #000;
+              @include media(sp) {
+                font-size: sp(24);
+              }
+              @include media(pc) {
+                font-size: pc(24);
               }
             }
           }
