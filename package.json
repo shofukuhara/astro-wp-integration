@@ -21,6 +21,7 @@
   "devDependencies": {
     "@rollup/plugin-terser": "^0.4.4",
     "astro-compress": "^2.3.5",
+    "astro-get-remote-img": "^1.1.0",
     "astro-relative-links": "^0.4.2",
     "autoprefixer": "^10.4.20",
     "css-declaration-sorter": "^7.2.0",

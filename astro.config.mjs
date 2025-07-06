@@ -2,6 +2,7 @@ import relativeLinks from "astro-relative-links";
 import compress from "astro-compress";
 import { defineConfig } from "astro/config";
 import license from "rollup-plugin-license";
+import getRemoteAssets from "astro-get-remote-img";
 
 export default defineConfig({
   server: {
@@ -9,7 +10,13 @@ export default defineConfig({
     open: true,
   },
   compressHTML: false,
-  integrations: [relativeLinks()],
+  integrations: [
+    relativeLinks(),
+    getRemoteAssets({
+      url: "https://mydevelop.local",
+      imageDir: "assets/images",
+    }),
+  ],
   vite: {
     build: {
       cssMinify: true, // css圧縮する場合はtrue
