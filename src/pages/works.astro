@@ -3,26 +3,8 @@ import Base from "../layouts/Base.astro";
 import Header from "../layouts/Header.astro";
 import AssetsImage from "../components/common/AssetsImage.astro";
 import AssetsPicture from "../components/common/AssetsPicture.astro";
+import type { Work } from "../types/work";
 
-// 型定義
-export interface Work {
-  id: number;
-  slug: string;
-  title: {
-    rendered: string;
-  };
-  content: {
-    rendered: string;
-  };
-  _embedded?: {
-    "wp:featuredmedia"?: [{ source_url: string }];
-  };
-  acf?: {
-    article_image?: string;
-    article_title?: string;
-    article_text?: string;
-  };
-}
 const res = await fetch(`${import.meta.env.PUBLIC_API_URL}/works?_embed`);
 
 const workList: Work[] = await res.json();

@@ -1,0 +1,8 @@
+---
+import Base from "../../layouts/Base.astro";
+import type { Work } from "../../types/work";
+const { slug } = Astro.params;
+const res = await fetch(
+  `${import.meta.env.PUBLIC_API_URL}/works?slug=${slug}&_embed`
+);
+---
