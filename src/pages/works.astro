@@ -10,7 +10,7 @@ const res = await fetch(`${import.meta.env.PUBLIC_API_URL}/works?_embed`);
 const workList: Work[] = await res.json();
 ---
 
-<Base pageMeta="home" pageData="home">
+<Base pageMeta="works" pageData="works">
   <!-- body内の要素 -->
   <Header />
   <section class="works">

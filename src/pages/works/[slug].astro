@@ -1,8 +1,54 @@
 ---
 import Base from "../../layouts/Base.astro";
+import Header from "../../layouts/Header.astro";
 import type { Work } from "../../types/work";
-const { slug } = Astro.params;
+
+// SSGルーティング
+export async function getStaticPaths() {
+  const res = await fetch(`${import.meta.env.PUBLIC_API_URL}/works`);
+  const works: Work[] = await res.json();
+
+  return works.map((work) => ({
+    params: { slug: decodeURI(work.slug) },
+  }));
+}
+
+const slug = Astro.params.slug;
+const safeSlug = encodeURIComponent(slug);
 const res = await fetch(
-  `${import.meta.env.PUBLIC_API_URL}/works?slug=${slug}&_embed`
+  `${import.meta.env.PUBLIC_API_URL}/works?slug=${safeSlug}`
 );
+const data: Work[] = await res.json();
+const work = data[0];
 ---
+
+<Base pageMeta="article" pageData="article">
+  <!-- body内の要素 -->
+  <Header />
+  <main class="article_content">
+    <section class="article_head">
+      <div class="article_image">
+        <p>{work.title.rendered}</p>
+      </div>
+      <h1 class="article_title">{work.title.rendered}</h1>
+      <!-- <p class="article_read">{work.description}</p> -->
+    </section>
+  </main>
+</Base>
+
+<style lang="scss" is:global>
+  .article_content {
+    @include media(sp) {
+      padding: 0 sp(24);
+      margin-top: sp(60);
+      padding-right: sp(16);
+      margin-bottom: sp(60);
+      padding-left: sp(16);
+    }
+    @include media(pc) {
+      padding: 0 pc(40);
+      margin-top: pc(120);
+      margin-bottom: pc(120);
+    }
+  }
+</style>
