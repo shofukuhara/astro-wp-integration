@@ -16,10 +16,15 @@ export async function getStaticPaths() {
 const slug = Astro.params.slug;
 const safeSlug = encodeURIComponent(slug);
 const res = await fetch(
-  `${import.meta.env.PUBLIC_API_URL}/works?slug=${safeSlug}`
+  `${import.meta.env.PUBLIC_API_URL}/works?slug=${safeSlug}&_embed`
 );
 const data: Work[] = await res.json();
 const work = data[0];
+
+// acfで作成したフィールドの値
+const acfImage = work.acf?.article_image ?? "";
+const acfTitle = work.acf?.article_title ?? "";
+const acfText = work.acf?.article_text ?? "";
 ---
 
 <Base pageMeta="article" pageData="article">
@@ -28,10 +33,10 @@ const work = data[0];
   <main class="article_content">
     <section class="article_head">
       <div class="article_image">
-        <p>{work.title.rendered}</p>
+        <img src={acfImage} alt="" />
       </div>
-      <h1 class="article_title">{work.title.rendered}</h1>
-      <!-- <p class="article_read">{work.description}</p> -->
+      <h1 class="article_title">{acfTitle}</h1>
+      <p class="article_read">{acfText}</p>
     </section>
   </main>
 </Base>
@@ -49,6 +54,21 @@ const work = data[0];
       padding: 0 pc(40);
       margin-top: pc(120);
       margin-bottom: pc(120);
+      display: grid;
+      grid-template-columns: repeat(10, 1fr);
+    }
+    .article_head {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      @include media(sp) {
+        grid-column: 3/9;
+        gap: sp(8);
+      }
+      @include media(pc) {
+        grid-column: 3/9;
+        gap: pc(16);
+      }
     }
   }
 </style>
