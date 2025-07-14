@@ -13,7 +13,7 @@ export default defineConfig({
   integrations: [
     relativeLinks(),
     getRemoteAssets({
-      url: "https://mydevelop.local",
+      url: "https://shofukuhara.com",
       imageDir: "assets/images",
     }),
   ],
