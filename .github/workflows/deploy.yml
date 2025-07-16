@@ -2,7 +2,7 @@ name: Deploy Astro on WordPress Update
 
 on:
   repository_dispatch:
-    types: [post_update]
+    types: [wp-update]
 
 jobs:
   say-hello:
