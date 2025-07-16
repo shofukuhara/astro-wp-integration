@@ -19,6 +19,9 @@ jobs:
 
       - name: パッケージインストール
         run: npm ci
+      
+      - name: .env ファイルを作成
+        run: echo "PUBLIC_API_URL=${{ secrets.PUBLIC_API_URL }}" > .env
 
       - name: Astroビルド
         run: npm run build
