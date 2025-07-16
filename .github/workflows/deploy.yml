@@ -1,0 +1,11 @@
+name: Deploy Astro on WordPress Update
+
+on:
+  repository_dispatch:
+    types: [post_update]
+
+jobs:
+  say-hello:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "WordPressからWebhook受信しました。"
