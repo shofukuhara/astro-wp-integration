@@ -1,0 +1,11 @@
+---
+import Base from "../layouts/Base.astro";
+import Header from "../layouts/Header.astro";
+import AssetsImage from "../components/common/AssetsImage.astro";
+import AssetsPicture from "../components/common/AssetsPicture.astro";
+import type { About } from "../types/about";
+
+const res = await fetch(`${import.meta.env.PUBLIC_API_URL}/about?_embed`);
+
+const aboutData: About = await res.json();
+---

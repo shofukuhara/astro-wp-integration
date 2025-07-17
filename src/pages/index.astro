@@ -18,6 +18,17 @@ const workList: Work[] = await res.json();
   <!-- body内の要素 -->
   <Header />
   <Fv />
+  <section class="about">
+    <div class="about__area">
+      <h2 class="about__title">About</h2>
+      <p class="about__text">
+        プロフィールテキストテキストテキストテキストテキストテキストテキストテキストテキストスト
+        テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト
+        テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト
+      </p>
+      <Button href="/about" text="もっと見る" />
+    </div>
+  </section>
   <section class="works">
     <div class="works__area">
       <h2 class="works__title">Works</h2>
@@ -46,6 +57,43 @@ const workList: Work[] = await res.json();
   </section>
 </Base>
 <style lang="scss" is:global>
+  .about {
+    @include media(sp) {
+      padding: 0 sp(24);
+      margin-top: sp(60);
+      padding-right: sp(16);
+      margin-bottom: sp(60);
+      padding-left: sp(16);
+    }
+    @include media(pc) {
+      padding: 0 pc(40);
+      margin-top: pc(120);
+      margin-bottom: pc(120);
+    }
+    > .about__area {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      margin-right: auto;
+      margin-left: auto;
+      @include media(pc) {
+        width: pc(800);
+        gap: pc(40);
+      }
+      > .about__title {
+        text-align: center;
+        @include media(sp) {
+          font-size: sp(24);
+        }
+        @include media(pc) {
+          font-size: pc(40);
+        }
+      }
+      > .about__text {
+      }
+    }
+  }
   .works {
     @include media(sp) {
       padding: 0 sp(24);
