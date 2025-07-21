@@ -9,3 +9,99 @@ const res = await fetch(`${import.meta.env.PUBLIC_API_URL}/about?_embed`);
 
 const aboutData: About = await res.json();
 ---
+
+<Base pageMeta="about" pageData="about">
+  <!-- body内の要素 -->
+  <Header />
+  <div class="about">
+    <div class="about__area">
+      <h2 class="about__title">About</h2>
+      <div class="about__wrap">
+        <section class="about__section">
+          <h3 class="about__subTitle">私たちについて</h3>
+          <p class="about_text">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur
+            vel ornare lacus. Integer nec nulla nec leo varius posuere.
+          </p>
+        </section>
+
+        <section class="about__section">
+          <h3 class="about__subTitle">ミッション</h3>
+          <p class="about_text">
+            私たちの使命は、革新的で信頼性の高いサービスを提供し、すべてのお客様に価値を届けることです。
+          </p>
+        </section>
+
+        <section class="about__section">
+          <h3 class="about__subTitle">沿革</h3>
+          <ul>
+            <li>2020年：設立</li>
+            <li>2021年：初の製品リリース</li>
+            <li>2023年：顧客数10,000人突破</li>
+          </ul>
+        </section>
+
+        <section class="about__section">
+          <h3 class="about__subTitle">チーム</h3>
+          <p class="about_text">
+            私たちはデザイナー、エンジニア、マーケターからなる多様なチームです。
+          </p>
+        </section>
+
+        <section class="about__section">
+          <h3 class="about__subTitle">価値観</h3>
+          <p class="about_text">私たちは「誠実」「成長」「共創」の3つの価値を大切にしています。</p>
+        </section>
+      </div>
+    </div>
+  </div>
+</Base>
+
+<style lang="scss" is:global>
+  .about {
+    @include media(sp) {
+      padding: 0 sp(24);
+      margin-top: sp(60);
+      padding-right: sp(16);
+      margin-bottom: sp(60);
+      padding-left: sp(16);
+    }
+    @include media(pc) {
+      padding: 0 pc(40);
+      margin-top: pc(120);
+      margin-bottom: pc(120);
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+    }
+    > .about__area {
+      grid-column: 3/11;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      @include media(pc) {
+        gap: pc(40);
+      }
+      > .about__title {
+        text-align: center;
+        @include media(sp) {
+          font-size: sp(24);
+        }
+        @include media(pc) {
+          font-size: pc(40);
+        }
+      }
+      > .about__wrap {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        gap: pc(80);
+        > .about__section {
+          > .about__subTitle {
+            font-size: pc(24);
+            margin-bottom: pc(16);
+          }
+        }
+      }
+    }
+  }
+</style>
