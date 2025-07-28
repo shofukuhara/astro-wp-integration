@@ -5,9 +5,17 @@ import AssetsImage from "../components/common/AssetsImage.astro";
 import AssetsPicture from "../components/common/AssetsPicture.astro";
 import type { About } from "../types/about";
 
-const res = await fetch(`${import.meta.env.PUBLIC_API_URL}/about?_embed`);
+const res = await fetch(`${import.meta.env.PUBLIC_API_URL}/pages?_embed`);
 
-const aboutData: About = await res.json();
+const data = await res.json();
+const aboutData: About = data[0]; 
+
+// acfで作成したフィールドの値
+const acfUs = aboutData.acf?.about_us ?? "";
+const acfMission = aboutData.acf?.about_mission ?? "";
+const acfHistory = aboutData.acf?.about_history ?? "";
+const acfTeam = aboutData.acf?.about_team ?? "";
+const acfValue = aboutData.acf?.about_value ?? "";
 ---
 
 <Base pageMeta="about" pageData="about">
@@ -20,37 +28,36 @@ const aboutData: About = await res.json();
         <section class="about__section">
           <h3 class="about__subTitle">私たちについて</h3>
           <p class="about_text">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur
-            vel ornare lacus. Integer nec nulla nec leo varius posuere.
+            {acfUs}
           </p>
         </section>
 
         <section class="about__section">
           <h3 class="about__subTitle">ミッション</h3>
           <p class="about_text">
-            私たちの使命は、革新的で信頼性の高いサービスを提供し、すべてのお客様に価値を届けることです。
+            {acfMission}
           </p>
         </section>
 
         <section class="about__section">
           <h3 class="about__subTitle">沿革</h3>
-          <ul>
-            <li>2020年：設立</li>
-            <li>2021年：初の製品リリース</li>
-            <li>2023年：顧客数10,000人突破</li>
-          </ul>
+          <p>
+            {acfHistory}
+          </p>
         </section>
 
         <section class="about__section">
           <h3 class="about__subTitle">チーム</h3>
           <p class="about_text">
-            私たちはデザイナー、エンジニア、マーケターからなる多様なチームです。
+            {acfTeam}
           </p>
         </section>
 
         <section class="about__section">
           <h3 class="about__subTitle">価値観</h3>
-          <p class="about_text">私たちは「誠実」「成長」「共創」の3つの価値を大切にしています。</p>
+          <p class="about_text">
+            {acfValue}
+          </p>
         </section>
       </div>
     </div>

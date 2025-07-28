@@ -15,7 +15,12 @@ import AssetsPicture from "../components/common/AssetsPicture.astro";
 <style lang="scss" is:global>
   .l-fv {
     width: 100%;
-    height: 100vh;
+    @include media(sp) {
+      height: sp(400);
+    }
+    @include media(pc) {
+      height: pc(800);
+    }
     picture {
       width: 100%;
       height: 100%;

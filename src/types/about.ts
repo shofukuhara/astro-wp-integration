@@ -14,10 +14,10 @@ export interface About {
     "wp:featuredmedia"?: [{ source_url: string }];
   };
   acf?: {
-    article_company?: string;
-    article_address?: string;
-    article_telephone?: string;
-    article_description?: string;
-    article_image?: string;
+    about_us?: string;
+    about_mission?: string;
+    about_history?: string;
+    about_team?: string;
+    about_value?: string;
   };
 }
