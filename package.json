@@ -25,6 +25,8 @@
     "astro-relative-links": "^0.4.2",
     "autoprefixer": "^10.4.20",
     "css-declaration-sorter": "^7.2.0",
+    "graphql": "^16.11.0",
+    "graphql-request": "^7.2.0",
     "postcss-sort-media-queries": "^5.2.0",
     "prettier": "^3.4.2",
     "prettier-plugin-astro": "^0.14.1",
